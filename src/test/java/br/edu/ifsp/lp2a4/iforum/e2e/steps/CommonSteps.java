@@ -1,31 +1,60 @@
 package br.edu.ifsp.lp2a4.iforum.e2e.steps;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertTrue;
 
-import org.springframework.http.HttpStatus;
+import java.util.HashMap;
+import java.util.Map;
 
-import br.edu.ifsp.lp2a4.iforum.e2e.steps.utils.SpringIntegrationTestHelpers;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import io.cucumber.java.After;
+import io.cucumber.java.pt.Entao;
+import io.cucumber.java.pt.Quando;
 
-public class CommonSteps extends SpringIntegrationTestHelpers {
+public class CommonSteps extends BaseE2E {
+	
+	public static Map<String, String> pageAndPath = new HashMap<String, String>() {
+		{
+			put("Tópicos", "/topicos");
+		}
+		private static final long serialVersionUID = -8187083082768035176L;
+	};
+	
+	
 
-    @When("the client calls \\\\/version")
-    public void the_client_issues_GET_version() throws Throwable {
-        executeGet("http://localhost:8080/version");
-    }
-
-    @Then("the client receives status code of {int}")
-    public void the_client_receives_status_code_of(int statusCode) throws Throwable {
-        final HttpStatus currentStatusCode = latestResponse.getTheResponse().getStatusCode();
-        assertThat("status code is incorrect : " + latestResponse.getBody(), currentStatusCode.value(), is(statusCode));
-    }
-
-    @And("the client receives server version {string}")
-    public void the_client_receives_server_version_body(String version) throws Throwable {
-        assertThat(latestResponse.getBody(), is(version));
-    }
-
+	@Quando("eu visito {string}")
+	public void eu_visito(String pageUrl) {
+		String url = getUrlForPath(pageUrl);
+		
+		driver.get(url);
+	}
+	
+	@Quando("eu estou na página {string}")
+	public void eu_estou_na_pagina(String nomePagina) {
+		String url  = getUrlForPath(pageAndPath.get(nomePagina));
+		
+		driver.get(url);
+		
+		assertTrue(driver.getTitle().contains(nomePagina));
+	}
+	
+	
+	@Entao("eu devo ver uma mensagem dizendo {string}")
+	public void eu_devo_ver_a_mensagem(String expectedMessage) {
+		
+		String result = new WebDriverWait(driver,10L).until(new ExpectedCondition<String>() {
+           public String apply(WebDriver d) {
+               return d.findElement(By.tagName("body")).getText();
+			}
+		});
+		
+		assertTrue(result.contains(expectedMessage));
+	}
+	
+	@After()
+	public void closeBrowser() {
+		driver.quit();
+	}
 }

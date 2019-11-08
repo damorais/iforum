@@ -40,6 +40,10 @@ dependencies {
 	testImplementation 'io.cucumber:cucumber-junit:4.7.2'
 	
 	testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly 'com.h2database:h2'
+	
 }
 
 test {
@@ -54,5 +58,5 @@ task cucumber() {
 			classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
 			args = ['--plugin', 'pretty', '--glue', 'br.edu.ifsp.lp2a4.iforum.e2e', 'src/test/resources']
 		}
-	}
+	}	
 }

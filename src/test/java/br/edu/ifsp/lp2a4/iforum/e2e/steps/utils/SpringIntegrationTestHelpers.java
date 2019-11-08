@@ -7,10 +7,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.ResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
+
+import br.edu.ifsp.lp2a4.iforum.e2e.steps.BaseE2E;
+
 import org.springframework.http.HttpMethod;
 import org.springframework.http.client.ClientHttpResponse;
 
-public class SpringIntegrationTestHelpers {
+public class SpringIntegrationTestHelpers extends BaseE2E {
 	protected static ResponseResults latestResponse = null;
 
     @Autowired

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div>
+		<h2>Usuários</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Sobrenome</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="usuario : ${usuarios}" >
+					<td th:text="${usuario.nome}"></td>
+					<td th:text="${usuario.sobrenome}"></td>
+					<td><a th:href="@{/usuarios/{id}/edit(id=${usuario.id})}">Editar</a></td> 
+				</tr>				
+			</tbody>
+		</table>
+	</div>
+	<p>
+		<a href="/usuarios/create">Add a new user</a>
+	</p>
+</body>
+</html>
