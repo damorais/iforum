@@ -10,16 +10,16 @@ public class IforumApplication {
 
 	public static void main(String[] args) {
 		
-		Usuario u = new Usuario();
-		u.setNome("Dino");
-		u.setSobrenome("Sauro");
-		
-		Usuario u2 = new Usuario();
-		u2.setNome("Fran");
-		u2.setSobrenome("Sauro");
-		
-		u.salvar();
-		u2.salvar();
+//		Usuario u = new Usuario();
+//		u.setNome("Dino");
+//		u.setSobrenome("Sauro");
+//		
+//		Usuario u2 = new Usuario();
+//		u2.setNome("Fran");
+//		u2.setSobrenome("Sauro");
+//		
+//		u.salvar();
+//		u2.salvar();
 		
 		
 		SpringApplication.run(IforumApplication.class, args);
