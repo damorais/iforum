@@ -1,7 +1,5 @@
 package br.edu.ifsp.lp2a4.iforum.integration.controllers;
 
-import static org.assertj.core.api.Assertions.not;
-import static org.hamcrest.CoreMatchers.hasItems;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
