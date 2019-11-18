@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.ifsp.lp2a4.iforum.entidades.Topico;
 import br.edu.ifsp.lp2a4.iforum.entidades.TopicosRepository;
@@ -16,6 +17,7 @@ import io.cucumber.java.pt.Entao;
 
 public class TopicosSteps extends BaseE2E{
 	
+	@Autowired
 	TopicosRepository topicosRepository;
 	
 	@Entao("eu devo conseguir ver a lista de topicos cadastrados")
@@ -32,7 +34,7 @@ public class TopicosSteps extends BaseE2E{
 	@Dado("que ha topicos cadastrados")
 	public void ha_topicos_cadastrados(){
 		
-		topicosRepository = new TopicosRepository();
+		//topicosRepository = new TopicosRepository();
 		
 		Topico topico1 = new Topico();
 		topico1.setTitulo("Topico 1");

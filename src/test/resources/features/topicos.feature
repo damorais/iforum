@@ -13,5 +13,5 @@ Funcionalidade: Um usuario deve conseguir visualizar os tópicos cadastrados
   Cenário: Consigo visualizar topicos cadastrados
   	Dado que ha topicos cadastrados
   	Quando eu acesso a pagina "Topicos"
-  	Então eu consigo visualizar estes tópicos
+  	Então eu consigo visualizar estes topicos
   	

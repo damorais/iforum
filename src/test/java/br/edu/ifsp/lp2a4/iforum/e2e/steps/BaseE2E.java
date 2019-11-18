@@ -4,14 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 
 public class BaseE2E {
 	//O Webdriver deve ser estático, para que ele seja acessível pelos passos em sequência
-	protected static WebDriver driver = new ChromeDriver();
-	
+	protected static WebDriver driver;
+
 	@Autowired
 	private Environment env;
 	
@@ -23,6 +22,8 @@ public class BaseE2E {
 		return String.format("%s%s", getBaseUrl(), path);
 	}
 
+	
+	
 	//TODO: Achar uma alternativa mais adequada para esta representação
 	public static Map<String, String> pageNameToUrl = new HashMap<String, String>() {
 		{

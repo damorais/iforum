@@ -1,6 +1,5 @@
 package br.edu.ifsp.lp2a4.iforum.controllers;
 
-import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +21,6 @@ public class UsuariosController {
 	public UsuariosController(UsuariosRepository repository) {
 		this.repository = repository;
 	}
-	
 
 	@GetMapping("/usuarios")
 	public ResponseEntity<Iterable<Usuario>> list(){
