@@ -5,6 +5,7 @@ Funcionalidade: Um usuario deve conseguir visualizar os tópicos cadastrados
 	Devo conseguir visualizar os topicos registrados
 	De forma a poder discutir assuntos de meu interesse com os membros da comunidade
 
+	@wip
   Cenário: Consigo acessar a lista de topicos
   	Quando eu acesso a pagina "Topicos"
   	Então eu devo conseguir ver a lista de topicos cadastrados

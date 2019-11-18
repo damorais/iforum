@@ -52,7 +52,18 @@ task cucumber() {
 		javaexec {
 			main = "io.cucumber.core.cli.Main"
 			classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-			args = ['--plugin', 'pretty', '--glue', 'br.edu.ifsp.lp2a4.iforum.e2e', 'src/test/resources']
+			args = ['--plugin', 'pretty', '--plugin', 'html:output', '--glue', 'br.edu.ifsp.lp2a4.iforum.e2e', 'src/test/resources']
+		}
+	}	
+}
+
+task wip() {
+	dependsOn assemble, compileTestJava
+	doLast {
+		javaexec {
+			main = "io.cucumber.core.cli.Main"
+			classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+			args = ['--tags', '@wip', '--plugin', 'pretty', '--plugin', 'html:output', '--glue', 'br.edu.ifsp.lp2a4.iforum.e2e', 'src/test/resources']
 		}
 	}	
 }

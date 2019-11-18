@@ -10,13 +10,10 @@
 			<th>Título</th>
 			<th>Descrição</th>
 		</tr>
-		<tr th:each="topico : ${topicos}" >
-		<td th:text="${topico.titulo}"></td>
-		<td th:text="${topico.descricao}"></td>
-		
-	</tr>				
-
+		<tr th:each="topico : ${topicos}">
+			<td th:text="${topico.titulo}"></td>
+			<td th:text="${topico.mensagem}"></td>
+		</tr>
 	</table>
-	
 </body>
 </html>

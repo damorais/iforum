@@ -11,7 +11,7 @@ import org.springframework.core.env.Environment;
 public class BaseE2E {
 	public static final String ApplicationBaseURI = "http://localhost:3000";
 	
-	protected final WebDriver driver = new ChromeDriver();
+	protected static WebDriver driver = new ChromeDriver();
 	
 	@Autowired
 	private Environment env;
@@ -26,6 +26,14 @@ public class BaseE2E {
 			put("Topicos", "/topicos");
 		}
 		private static final long serialVersionUID = -8187083082768035176L;
+	};
+	
+	public static Map<String, String> pageAndTitle = new HashMap<String, String>() {
+		{
+			put("Topicos", "Tópicos");
+		}
+		
+		private static final long serialVersionUID = -7416683244851547946L;		
 	};
  
 }

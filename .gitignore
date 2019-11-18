@@ -6,6 +6,7 @@ build/
 !**/src/test/**
 /bin/*
 
+output/
 .attach*
 ### STS ###
 .apt_generated
