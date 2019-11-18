@@ -9,18 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 
 public class BaseE2E {
-	public static final String ApplicationBaseURI = "http://localhost:3000";
-	
+	//O Webdriver deve ser estático, para que ele seja acessível pelos passos em sequência
 	protected static WebDriver driver = new ChromeDriver();
 	
 	@Autowired
 	private Environment env;
 	
+	public String getBaseUrl() {
+		return String.format("http://localhost:%s", env.getProperty("server.port"));
+	}
+	
 	public String getUrlForPath(String path) {
-		return String.format("http://localhost:%s%s", env.getProperty("server.port"), path);
-	}	
-	
-	
+		return String.format("%s%s", getBaseUrl(), path);
+	}
+
+	//TODO: Achar uma alternativa mais adequada para esta representação
 	public static Map<String, String> pageNameToUrl = new HashMap<String, String>() {
 		{
 			put("Topicos", "/topicos");
@@ -28,6 +31,7 @@ public class BaseE2E {
 		private static final long serialVersionUID = -8187083082768035176L;
 	};
 	
+	//TODO: Melhorar: Tenho problema com acentos
 	public static Map<String, String> pageAndTitle = new HashMap<String, String>() {
 		{
 			put("Topicos", "Tópicos");
@@ -35,5 +39,4 @@ public class BaseE2E {
 		
 		private static final long serialVersionUID = -7416683244851547946L;		
 	};
- 
 }

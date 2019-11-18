@@ -24,10 +24,6 @@ import io.cucumber.java.pt.Quando;
 
 public class CommonSteps extends BaseE2E {
 	
-	//WebDriver driver = new ChromeDriver();
-	
-	//TopicosRepository topicosRepository;
-	
 	@Quando("eu acesso a pagina {string}")
 	public void eu_acesso_a_pagina(String pagina) {
 		String url = getUrlForPath(BaseE2E.pageNameToUrl.get(pagina)); 
@@ -43,16 +39,7 @@ public class CommonSteps extends BaseE2E {
 		assertThat(title).contains(pageAndTitle.get(pagina));
 	}
 	
-	@Entao("eu consigo visualizar estes topicos")
-	public void consigo_visualizar_topicos(){
-		WebElement tabelaTopicos = driver.findElement(By.id("topicos"));
-		
-		
-		
-		
-		List<WebElement> itensTabela = tabelaTopicos.findElements(By.tagName("tr"));
-		assertThat(itensTabela.size()).isEqualTo(3);
-	}
+
 	
 	@Quando("eu clico no link {string}")
 	public void eu_clico_no_link(String linkText){

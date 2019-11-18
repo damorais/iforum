@@ -20,10 +20,6 @@ public class TopicosSteps extends BaseE2E{
 	
 	@Entao("eu devo conseguir ver a lista de topicos cadastrados")
 	public void vejo_a_lista_de_topicos() {
-		
-		System.out.println("---------------------" + driver.getCurrentUrl());
-		System.out.println("---------------------" + driver.getPageSource());
-		
 		WebElement tabelaTopicos = new WebDriverWait(driver,10L).until(new ExpectedCondition<WebElement>() {
            public WebElement apply(WebDriver d) {
                return d.findElement(By.id("topicos"));
@@ -51,4 +47,11 @@ public class TopicosSteps extends BaseE2E{
 		
 	}
 	
+	@Entao("eu consigo visualizar estes topicos")
+	public void consigo_visualizar_topicos(){
+		WebElement tabelaTopicos = driver.findElement(By.id("topicos"));
+		
+		List<WebElement> itensTabela = tabelaTopicos.findElements(By.tagName("tr"));
+		assertThat(itensTabela.size()).isEqualTo(3);
+	}
 }
