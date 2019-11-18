@@ -17,10 +17,27 @@ public class CommonSteps extends BaseE2E {
 	
 	public static Map<String, String> pageAndPath = new HashMap<String, String>() {
 		{
-			put("Tópicos", "/topicos");
+			put("Topicos", "/topicos");
 		}
 		private static final long serialVersionUID = -8187083082768035176L;
 	};
+	
+	@Quando("eu acesso a pagina {string}")
+	public void eu_acesso_a_pagina(String pagina) {
+		String url = getUrlForPath(BaseE2E.pageNameToUrl.get(pagina)); 
+	
+		System.out.println(url);
+		
+		driver.get(url);
+		
+		assertTrue(driver.getTitle().contains(pagina));
+	}
+	
+	@Quando("eu clico no link {string}")
+	public void eu_clico_no_link(String linkText){
+		// Write code here that turns the phrase above into concrete actions
+		throw new cucumber.api.PendingException();
+	}
 	
 	
 
@@ -31,7 +48,7 @@ public class CommonSteps extends BaseE2E {
 		driver.get(url);
 	}
 	
-	@Quando("eu estou na página {string}")
+	@Quando("eu estou na pagina {string}")
 	public void eu_estou_na_pagina(String nomePagina) {
 		String url  = getUrlForPath(pageAndPath.get(nomePagina));
 		
@@ -39,7 +56,6 @@ public class CommonSteps extends BaseE2E {
 		
 		assertTrue(driver.getTitle().contains(nomePagina));
 	}
-	
 	
 	@Entao("eu devo ver uma mensagem dizendo {string}")
 	public void eu_devo_ver_a_mensagem(String expectedMessage) {
@@ -53,8 +69,15 @@ public class CommonSteps extends BaseE2E {
 		assertTrue(result.contains(expectedMessage));
 	}
 	
+	@Entao("eu devo ser direcionado para a pagina {string}")
+	public void eu_devo_ser_redirecionado_para(String string){
+		// Write code here that turns the phrase above into concrete actions
+		throw new cucumber.api.PendingException();
+	}
+	
 	@After()
 	public void closeBrowser() {
+		driver.close();
 		driver.quit();
 	}
 }

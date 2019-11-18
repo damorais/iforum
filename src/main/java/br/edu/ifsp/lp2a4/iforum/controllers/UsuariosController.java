@@ -1,4 +1,4 @@
-package br.edu.ifsp.lp2a4.iforum;
+package br.edu.ifsp.lp2a4.iforum.controllers;
 
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import br.edu.ifsp.lp2a4.iforum.entidades.Usuario;
 
 @RestController
 public class UsuariosController {

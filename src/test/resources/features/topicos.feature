@@ -1,15 +1,16 @@
 # language: pt
 
-Funcionalidade: Um usuário deve conseguir visualizar os tópicos cadastrados
-	Eu, enquanto usuário
-	Devo conseguir visualizar os tópicos registrados
+Funcionalidade: Um usuario deve conseguir visualizar os tópicos cadastrados
+	Eu, enquanto usuario
+	Devo conseguir visualizar os topicos registrados
 	De forma a poder discutir assuntos de meu interesse com os membros da comunidade
 
-  Cenário: Consigo acessar a lista de tópicos
-  	Quando eu acesso a página "Tópicos"
-  	Então eu devo conseguir ver a lista de tópicos cadastrados
+  Cenário: Consigo acessar a lista de topicos
+  	Quando eu acesso a pagina "Topicos"
+  	Então eu devo conseguir ver a lista de topicos cadastrados
   	
-  Cenário: Consigo visualizar tópicos cadastrados
-  	Dado que há tópicos cadastrados
-  	Quando eu acesso a página "Tópicos"
-  	Então eu consigo visualizar estes tópicos 
+  Cenário: Consigo visualizar topicos cadastrados
+  	Dado que ha topicos cadastrados
+  	Quando eu acesso a pagina "Topicos"
+  	Então eu consigo visualizar estes tópicos
+  	

@@ -5,7 +5,8 @@ import java.util.List;
 
 public class TopicosRepository {
 	
-	private static List<Topico> _Topicos = new ArrayList<>();
+	private static List<Topico> _Topicos = new ArrayList<Topico>();
+			
 	
 	public void save(Topico topico) {
 		_Topicos.add(topico);

@@ -1,5 +1,6 @@
 package br.edu.ifsp.lp2a4.iforum.entidades;
 
+
 public class Topico {
 	
 	private long id;
@@ -24,5 +25,14 @@ public class Topico {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public Topico() {
+		super();
+	}
+	
+	public Topico(String titulo, String mensagem) {
+		this.titulo = titulo;
+		this.mensagem = mensagem;
 	}
 }

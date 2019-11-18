@@ -1,4 +1,4 @@
-package br.edu.ifsp.lp2a4.iforum;
+package br.edu.ifsp.lp2a4.iforum.entidades;
 
 import java.util.ArrayList;
 import java.util.HashMap;

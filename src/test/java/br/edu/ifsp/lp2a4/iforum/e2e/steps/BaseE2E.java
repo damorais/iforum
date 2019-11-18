@@ -23,7 +23,7 @@ public class BaseE2E {
 	
 	public static Map<String, String> pageNameToUrl = new HashMap<String, String>() {
 		{
-			put("Tópicos", "/topicos");
+			put("Topicos", "/topicos");
 		}
 		private static final long serialVersionUID = -8187083082768035176L;
 	};

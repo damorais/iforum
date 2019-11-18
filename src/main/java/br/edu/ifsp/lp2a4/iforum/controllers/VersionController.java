@@ -1,4 +1,4 @@
-package br.edu.ifsp.lp2a4.iforum;
+package br.edu.ifsp.lp2a4.iforum.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
