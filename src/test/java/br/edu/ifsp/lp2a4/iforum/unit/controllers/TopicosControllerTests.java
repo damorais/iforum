@@ -15,7 +15,7 @@ import br.edu.ifsp.lp2a4.iforum.entidades.Topico;
 import br.edu.ifsp.lp2a4.iforum.entidades.TopicosRepository;
 
 public class TopicosControllerTests {
-	
+		
 	@Test
 	public void deve_retornar_um_template_de_lista_de_topicos() {
 		TopicosRepository repository = Mockito.mock(TopicosRepository.class);
@@ -43,6 +43,18 @@ public class TopicosControllerTests {
 		List<Topico> topicosRetornados = (List<Topico>)resultado.getModelMap().get("topicos");
 		
 		assertThat(topicosRetornados.size()).isEqualTo(expectedTopicsList.size());		
+	}
+	
+	@Test
+	public void deve_retornar_um_template_de_criacao_de_topico() {
+		
+		TopicosRepository repository = Mockito.mock(TopicosRepository.class);
+		
+		TopicosController controller = new TopicosController(repository);
+		
+		ModelAndView resultado = controller.create();
+		
+		assertThat(resultado.getViewName()).isEqualTo("topicos/create");
 	}
 	
 //	@Test

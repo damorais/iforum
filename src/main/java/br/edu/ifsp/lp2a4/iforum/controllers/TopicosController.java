@@ -27,4 +27,12 @@ public class TopicosController {
 		
 		return mv;
 	}
+
+	@GetMapping("topicos/create")
+	public ModelAndView create() {
+		
+		ModelAndView mv = new ModelAndView("topicos/create");
+		
+		return mv;
+	}
 }
