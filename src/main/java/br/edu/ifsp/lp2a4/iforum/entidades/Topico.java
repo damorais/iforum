@@ -4,15 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Topico {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@NotEmpty
 	private String titulo;
+	
+	@NotEmpty
 	private String mensagem;
 	
 	public String getTitulo() {

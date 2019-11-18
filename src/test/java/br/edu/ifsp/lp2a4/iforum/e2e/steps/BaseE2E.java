@@ -30,7 +30,7 @@ public class BaseE2E {
 	//TODO: Achar uma alternativa mais adequada para esta representação
 	public static Map<String, String> pageNameToUrl = new HashMap<String, String>() {
 		{
-			put("Topicos", "/topicos");
+			put("Tópicos", "/topicos");
 			put("Novo Tópico", "/topicos/create");
 		}
 		private static final long serialVersionUID = -8187083082768035176L;
@@ -39,7 +39,7 @@ public class BaseE2E {
 	//TODO: Melhorar: Tenho problema com acentos
 	public static Map<String, String> pageAndTitle = new HashMap<String, String>() {
 		{
-			put("Topicos", "Tópicos");
+			put("Tópicos", "Tópicos");
 			put("Novo Tópico", "Novo Tópico");
 		}
 		

@@ -9,6 +9,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import br.edu.ifsp.lp2a4.iforum.controllers.TopicosController;
 import br.edu.ifsp.lp2a4.iforum.entidades.Topico;
@@ -56,6 +58,59 @@ public class TopicosControllerTests {
 		
 		assertThat(resultado.getViewName()).isEqualTo("topicos/create");
 	}
+	
+	@Test
+	public void ao_criar_deve_redirecionar_para_a_lista_de_topicos() {
+		TopicosRepository repository = Mockito.mock(TopicosRepository.class);
+		
+		TopicosController controller = new TopicosController(repository);
+		RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
+		
+		Topico topico = new Topico("Um topico qualquer", "Exemplo de tópico");
+		
+		ModelAndView resultado = controller.create(topico, redirectAttributes);
+		
+		assertThat(resultado.getViewName()).isEqualTo("redirect: /topicos");
+	}
+
+//	@Test
+//	public void ao_criar_deve_redirecionar_com_mensagem_de_sucesso() {
+//		TopicosRepository repository = Mockito.mock(TopicosRepository.class);
+//		
+//		TopicosController controller = new TopicosController(repository);
+//		
+//		RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
+//		
+//		Topico topico = new Topico("Um topico qualquer", "Exemplo de tópico");
+//		
+//		//Não preciso do resultado, uma vez que eu mexo no mesmo elemento passado
+//		//como atributo
+//		controller.create(topico, redirectAttributes);
+//		
+//		assertThat(redirectAttributes.getFlashAttributes().containsKey("sucesso")).isTrue();
+//		assertThat(redirectAttributes.getFlashAttributes().get("sucesso")).isEqualTo("Tópico criado");
+//	}
+//	
+//	@Test
+//	public void deve_permanecer_no_template_quando_invalido() {
+//		TopicosRepository repository = Mockito.mock(TopicosRepository.class);
+//		
+//		TopicosController controller = new TopicosController(repository);
+//		
+//		RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
+//		
+//		Topico topico = new Topico("Um topico qualquer", "Exemplo de tópico");
+//		
+//		//Não preciso do resultado, uma vez que eu mexo no mesmo elemento passado
+//		//como atributo
+//		controller.create(topico, redirectAttributes);
+//		
+//		assertThat(redirectAttributes.getFlashAttributes().containsKey("sucesso")).isTrue();
+//		assertThat(redirectAttributes.getFlashAttributes().get("sucesso")).isEqualTo("Tópico criado");
+//	}
+	
+	
+	
 	
 //	@Test
 //	public void deve_retornar_lista_vazia_quando_nao_ha_topicos() {

@@ -5,6 +5,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<!--  TODO: Não implementado ainda -->
+	<form action="#" th:action="@{/usuarios/create}" method="post">
+	    <label for="titulo">Título</label>
+	    <input type="text" id="titulo" placeholder="Título">
+	    
+	    <label for="descricao">Descrição</label>
+	    <input type="text" id="descricao" placeholder="Descrição">
+	    <button type="submit">Salvar</button>
+	</form>
 </body>
 </html>

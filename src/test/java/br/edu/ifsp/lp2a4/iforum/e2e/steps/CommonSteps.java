@@ -12,21 +12,23 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 
 public class CommonSteps extends BaseE2E {
 
 	@Quando("clico em {string}")
-	public void eu_clico_em(String textoLink) {
+	public void eu_clico_em(String textoBotao) {
 
-		WebElement link = new WebDriverWait(driver, DefaultWaitTime).until(new ExpectedCondition<WebElement>() {
+		WebElement botao = new WebDriverWait(driver, DefaultWaitTime).until(new ExpectedCondition<WebElement>() {
 			public WebElement apply(WebDriver d) {
-				return d.findElement(By.linkText(textoLink));
+				
+				return d.findElement(By.xpath("//button[text()=\""+ textoBotao + "\"]"));
 			}
 		});
 
-		link.click();
+		botao.click();
 	}
 
 	@Entao("eu devo ser redirecionado para a página {string}")
@@ -43,8 +45,23 @@ public class CommonSteps extends BaseE2E {
 			.isEqualTo(getUrlForPath(pageNameToUrl.get(nomePagina)));
 	}
 
-	@Quando("eu acesso a pagina {string}")
+	@Quando("eu acesso a página {string}")
 	public void eu_acesso_a_pagina(String pagina) {
+		String url = getUrlForPath(BaseE2E.pageNameToUrl.get(pagina));
+
+		driver.get(url);
+
+		String title = new WebDriverWait(driver, DefaultWaitTime).until(new ExpectedCondition<String>() {
+			public String apply(WebDriver d) {
+				return d.getTitle();
+			}
+		});
+
+		assertThat(title).contains(pageAndTitle.get(pagina));
+	}
+	
+	@Dado("que eu estou na página {string}")
+	public void eu_estou_na_pagina(String pagina){
 		String url = getUrlForPath(BaseE2E.pageNameToUrl.get(pagina));
 
 		driver.get(url);
@@ -71,14 +88,14 @@ public class CommonSteps extends BaseE2E {
 		driver.get(url);
 	}
 
-	@Quando("eu estou na pagina {string}")
-	public void eu_estou_na_pagina(String nomePagina) {
-		String url = getUrlForPath(pageNameToUrl.get(nomePagina));
-
-		driver.get(url);
-
-		assertTrue(driver.getTitle().contains(nomePagina));
-	}
+//	@Quando("eu estou na página {string}")
+//	public void quando_eu_estou_na_pagina(String nomePagina) {
+//		String url = getUrlForPath(pageNameToUrl.get(nomePagina));
+//
+//		driver.get(url);
+//
+//		assertTrue(driver.getTitle().contains(nomePagina));
+//	}
 
 	@Entao("eu devo ver uma mensagem dizendo {string}")
 	public void eu_devo_ver_a_mensagem(String expectedMessage) {
@@ -92,7 +109,7 @@ public class CommonSteps extends BaseE2E {
 		assertTrue(result.contains(expectedMessage));
 	}
 
-	@Entao("eu devo ser direcionado para a pagina {string}")
+	@Entao("eu devo ser direcionado para a página {string}")
 	public void eu_devo_ser_redirecionado_para(String string) {
 		// Write code here that turns the phrase above into concrete actions
 		throw new cucumber.api.PendingException();
