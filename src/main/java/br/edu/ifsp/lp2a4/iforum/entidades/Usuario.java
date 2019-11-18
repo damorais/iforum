@@ -4,18 +4,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+
+@Entity
 public class Usuario {
 	
-	private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+	
 	private String nome;
 	private String sobrenome;
 	
-	public int getId() {
+	public long getId() {
 		return this.id;
 	}
 	
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	
@@ -31,31 +40,5 @@ public class Usuario {
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
-	
-	public void salvar() {
-		if(this.id == 0) {
-			_usuarioSeq++;
-			this.setId(_usuarioSeq);
-			_UsuariosDict.put(_usuarioSeq, this);
-		}else {
-			_UsuariosDict.replace(this.getId(), this);
-		}
-	}
-	
-	public void remover() {
-		_UsuariosDict.remove(this.id);
-	}
-	
-	public static List<Usuario> Todos(){
-		return new ArrayList<Usuario>(_UsuariosDict.values());
-	}
-	
-	public static Usuario GetById(int id) {
-		return _UsuariosDict.get(id);
-	}
-	
-	private static HashMap<Integer, Usuario> _UsuariosDict = new HashMap<>();
-	private static int _usuarioSeq = 0;
-
 
 }

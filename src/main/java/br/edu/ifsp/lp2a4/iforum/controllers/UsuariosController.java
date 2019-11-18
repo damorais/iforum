@@ -12,26 +12,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifsp.lp2a4.iforum.entidades.Usuario;
+import br.edu.ifsp.lp2a4.iforum.entidades.UsuariosRepository;
 
 @RestController
 public class UsuariosController {
 	
+	private UsuariosRepository repository;
+	
+	public UsuariosController(UsuariosRepository repository) {
+		this.repository = repository;
+	}
+	
+
 	@GetMapping("/usuarios")
-	public ResponseEntity<List<Usuario>> list(){
+	public ResponseEntity<Iterable<Usuario>> list(){
+
+		Iterable<Usuario> usuarios = repository.findAll();
 		
-		ResponseEntity<List<Usuario>> response = 
-				new ResponseEntity<>(Usuario.Todos(), HttpStatus.OK);
+		ResponseEntity<Iterable<Usuario>> response = 
+				new ResponseEntity<>(usuarios, HttpStatus.OK);
+		
 		return response;
 	}
 	
 	@GetMapping("/usuarios/{id}")
-	public Usuario get(@PathVariable int id) {
-		return Usuario.GetById(id);	
+	public Usuario get(@PathVariable long id) {
+		
+		//TODO: Melhorar (404?)
+		Usuario usuario = repository.findById(id).orElseThrow();
+		
+		return usuario;	
 	}
 	
 	@PostMapping("/usuarios")
 	public ResponseEntity<Usuario> create(@RequestBody Usuario usuario) {
-		usuario.salvar();
+		
+		repository.save(usuario);
 		
 		ResponseEntity<Usuario> response = 
 				new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED);
@@ -40,20 +56,26 @@ public class UsuariosController {
 	}
 	
 	@PutMapping("/usuarios/{id}")
-	public Usuario update(@PathVariable int id, @RequestBody Usuario usuarioAtualizado) {
-		Usuario usuario = Usuario.GetById(id);
+	public Usuario update(@PathVariable long id, @RequestBody Usuario usuarioAtualizado) {
+		
+		//TODO: Melhorar (404?)
+		Usuario usuario = repository.findById(id).orElseThrow();
 		
 		usuario.setNome(usuarioAtualizado.getNome());
 		usuario.setSobrenome(usuarioAtualizado.getSobrenome());
-		usuario.salvar();
+		
+		repository.save(usuario);
 		
 		return usuario;	
 	}
 	
 	@DeleteMapping("/usuarios/{id}")
-	public boolean delete(@PathVariable int id) {
-		Usuario usuario = Usuario.GetById(id);
-		usuario.remover();
+	public boolean delete(@PathVariable long id) {
+		
+		//TODO: Melhorar (404?)
+		Usuario usuario = repository.findById(id).orElseThrow();
+		
+		repository.deleteById(usuario.getId());
 
 		return true;
 	}
