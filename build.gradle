@@ -13,6 +13,9 @@ configurations {
 	runtimeClasspath {
 		extendsFrom developmentOnly
 	}
+	cucumberRuntime {
+		extendsFrom testImplementation
+	}
 }
 
 repositories {
@@ -26,8 +29,28 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	
+	testImplementation 'io.cucumber:cucumber-java8:2.0.1'
+	testImplementation 'io.cucumber:cucumber-spring:4.7.2'
+	testImplementation 'io.cucumber:cucumber-junit:4.7.2'
+	
+	testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'com.h2database:h2'
 }
 
 test {
 	useJUnitPlatform()
+}
+
+task cucumber {
+	dependsOn assemble, compileTestJava
+	doLast {
+		javaexec {
+			main = "io.cucumber.core.cli.Main"
+			classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+			args = ['--plugin', 'pretty', '--plugin', 'html:output', '--glue', 'br.edu.ifsp.lp2a4.iforum.e2e', 'src/test/resources']
+		}
+	}
 }
